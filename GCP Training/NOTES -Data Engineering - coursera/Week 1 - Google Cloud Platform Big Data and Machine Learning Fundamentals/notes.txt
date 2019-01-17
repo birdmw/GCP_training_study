@@ -1,0 +1,67 @@
+=========Google Cloud Platform Intro============
+
+Long term shift:
+First Wave
+    - Computers under desks
+Second Wave
+    - Data Centers
+Third Wave
+    - Virtual data centers
+    - Pay per provision
+
+Google's mission is to organize the world's information
+Google buys 1 out of 5 CPUs on the planet - wow!
+
+The cloud is most beneficial when you run things just when you need them.
+
+You can view GCP Big Data Products by functionality 
+    Foundation
+        Compute Engine
+        Cloud Storage
+    Databases
+        Datastore
+        Cloud SQL
+        Cloud Bigtable
+    Analytics and ML
+        BigQuery
+        Cloud Datalab
+        Translation API, Vision API, ...
+    Data-handling frameworks
+        Cloud pub/sub
+        Cloud Dataflow
+        Cloud Dataproc
+        
+No-Ops = No systems engineer required. Simply submit jobs.
+
+Journey to the cloud: When customers join GCP they
+    Change where they compute
+        Faster & Cheaper
+    Improve scalability and reliability
+        messaging -> pub/sub
+        data processing -> dataflow
+                                      or spark w/ dataproc (resize clusters very quickly)
+    Change how they compute
+    
+Google Cloud offers ways to...
+    Spend less on ops and administration
+    Incorporate real-time data into apps and architectures
+    Apply ML broadly and easily
+    Become a data-driven company
+    
+pre-emptable machines offer 80% discount (the opposite of fault-tolerant)
+    For instance: You can have 10 standard VMs and 30 pre-emptable VMs
+    whereas 10 can get the job done bare minimum, but the extra pre-emptables improve the service greatly
+    
+Lab 1 Create a compute engine instance
+    Task 1: Create Compute Engine instance with the necessary API access
+        view machine info:
+            cat /proc/cpuinfo
+        update
+            sudo apt-get update
+            sudo apt-get -y -qq install git
+            git --version
+            exit
+            
+            
+    
+    
