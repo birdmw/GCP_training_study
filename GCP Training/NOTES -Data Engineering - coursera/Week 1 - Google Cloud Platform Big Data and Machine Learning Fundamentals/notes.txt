@@ -1,5 +1,7 @@
 =========Google Cloud Platform Intro============
 
+==========WEEK 1==============================
+
 Long term shift:
 First Wave
     - Computers under desks
@@ -53,7 +55,8 @@ pre-emptable machines offer 80% discount (the opposite of fault-tolerant)
     whereas 10 can get the job done bare minimum, but the extra pre-emptables improve the service greatly
     
 Lab 1 Create a compute engine instance
-    Task 1: Create Compute Engine instance with the necessary API access
+    Create Compute Engine instance with the necessary API access
+    Open hamburger menu and create Compute Engine
         view machine info:
             cat /proc/cpuinfo
         update
@@ -62,6 +65,33 @@ Lab 1 Create a compute engine instance
             git --version
             exit
             
-            
+A Global Filesystem
+    Use Google Cloud Storage for persistent storage
+        and as a staging ground for import to other Google Cloud products
+            ie: Cloud SQL, BigQuery, Dataproc
+        This is how you just upload files in a basic, raw, staged way. They can "do" much of anything here.
+        ie: blob storage
+        Could be populated from a compute engine.
+            Compute engines might have their own disk for fast writing
+            Often first step of data cycle is to go from disk to GC Storage
+        gsutil co MY_FILENAME*.csv gs://MY_BUCKET1/data/
+            bucket names must be unique & if it's a company name you need to prove you own it.
+        Not an actual folder, not hierarchal, pure key value store
+            However, you can ls the "directory"
+        gsutil mb = make bucket
+        gsutil rb = remove bucket
+        gsutil rsync = mirror local folder and upload files which have changed
+        gsutil = invokes a web service REST API (which you can do yourself)
+        --ingest--> Compute Engine --store--> Cloud Storage ----> Cloud SQL OR publish
+        You can control access at the project level
+            All editors can change this bucket
+            All authenticated google users can read from this bucket
+            All users can read this data
+                Treat as a content delivery edge-cached, replicated, durable data sharing system
+    distributing applications and data across several zones for redundancy if users are in one country
+    Distribute across regions to minimize impact of service disruptions
+    Use multiple regions to provide global access to your application.
+        
+Lab 2: Earthquake data to map with Cloud Storage and make it publicly available
     
     
