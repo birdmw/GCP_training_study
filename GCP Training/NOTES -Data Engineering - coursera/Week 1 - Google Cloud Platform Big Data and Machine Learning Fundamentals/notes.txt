@@ -93,5 +93,55 @@ A Global Filesystem
     Use multiple regions to provide global access to your application.
         
 Lab 2: Earthquake data to map with Cloud Storage and make it publicly available
-    
-    
+    1) credential in
+    2) make a compute engine & Allow full access to all Cloud APIs
+    3) SSH in and get some data
+        sudo apt-get update
+        sudo apt-get -y -qq install git
+        git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+        cd training-data-analyst/CPB100/lab2b
+        bash ingest.sh
+        head earthquakes.csv
+    4) transform the data
+        Read the data narrative: https://github.com/GoogleCloudPlatform/datalab-samples/blob/master/basemap/earthquakes.ipynb
+        bash install_missing.sh
+        python3 transform.py
+        ls -l
+    5) Make bucket
+        hamburger menu ->storage -> Create Bucket with PROJECT_ID
+    6) Move data from URL to storage bucket
+        gsutil cp earthquakes.* gs://PROJECT_ID/earthquakes/
+        witness three
+    7) Publish storage bucket to web
+        gsutil acl ch -u AllUsers:R gs://<YOUR-BUCKET>/earthquakes/*
+       
+Quiz:
+    Compute nodes on GCP are:
+        -Allocated on demand, and you pay for the time that they are up.
+        Expensive to create and teardown
+        Pre-installed with all the software packages you might ever need.
+        One of ~50 choices in terms of CPU and memory
+    Google Cloud Storage is a good option for storing data that:
+    (Select all 2 of the correct options)
+        Is ingested in real-time from sensors and other devices
+        Will be frequently read/written from a compute node
+        -May be required to be read at some later time
+        -May be imported into a cluster for analysis
+        
+Compute Engines should be fungible, something that comes and goes. It's not expensive.
+
+check out https://cloud.google.com/pricing and see that you can type in:
+  COMPUTE:
+    N instances
+    M SSDs
+    H hours per day
+    D days per week
+  STORAGE:
+    ...
+  and get an estimate
+  
+check out cloud launcher @ hamburger menu OR https://cloud.google.com/launcher
+    select from pre-made machines that are for wordpress or any other use-cases
+        These are just configuration files which make some good templates to read
+        ^------- THIS SOUNDS LIKE A GOOD TIP
+
