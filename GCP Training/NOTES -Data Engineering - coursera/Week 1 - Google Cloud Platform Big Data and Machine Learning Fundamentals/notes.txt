@@ -145,3 +145,15 @@ check out cloud launcher @ hamburger menu OR https://cloud.google.com/launcher
         These are just configuration files which make some good templates to read
         ^------- THIS SOUNDS LIKE A GOOD TIP
 
+Intro to Managed Services for Common Use Cases
+
+Stepping Stones to Transformation
+    recommendation system 3 components:
+        1)   Rating
+        2)  Training
+        3)  Recommending
+        This guy is seriously rambling about recommendation engines for 10 minutes and straining not to say the words "collaborative filter" >:( What does this have to do with Stepping Stones to Transformation? I would just abandon the "story" that we are on-boarding someone and just present it as a separate video introducing a case study where we are going to look at "python spark on dataproc"
+        
+        
+
+-------------------- EOD 1/17/2019 -------------------
