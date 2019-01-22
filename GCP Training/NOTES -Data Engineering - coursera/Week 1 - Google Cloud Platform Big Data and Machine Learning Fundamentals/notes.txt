@@ -1,3 +1,5 @@
+https://www.coursera.org/programs/gcp-program-gtm-oct18-nxsgm
+
 =========Google Cloud Platform Intro============
 
 ==========WEEK 1==============================
@@ -153,7 +155,88 @@ Stepping Stones to Transformation
         2)  Training
         3)  Recommending
         This guy is seriously rambling about recommendation engines for 10 minutes and straining not to say the words "collaborative filter" >:( What does this have to do with Stepping Stones to Transformation? I would just abandon the "story" that we are on-boarding someone and just present it as a separate video introducing a case study where we are going to look at "python spark on dataproc"
-        
-        
 
--------------------- EOD 1/17/2019 -------------------
+--------------------- EOD 1/17/2019 ---------------------
+-------------------- START 1/18/2019 -------------------
+
+Lab 3: Setup Rentals Data in Cloud SQL v1.3
+    1) ->open cloud shell
+        git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+        cd training-data-analyst/CPB100/lab3a
+        less cloudsql/table_creation.sql
+        --> It looks like the idea of examining is to say that your *.csv files should travel with instructions for how to make a table
+    2) storage -> create bucket
+        gsutil cp cloudsql/* gs://<BUCKET-NAME>/sql/
+    3)Create Cloud SQL instance
+        from hamburger menu make sql 2nd gen & name & password
+        basically just mess around with import and you can populate databases and tables this way
+    4) wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+        chmod +x cloud_sql_proxy
+        
+        ./cloud_sql_proxy -instances=<INSTANCE_CONNECTION_NAME>=tcp:3306 &
+        
+        mysql -u root -p --host 127.0.0.1
+        use recommendation_spark;
+        show tables;
+        select * from Rating;
+        select * from Accommodation where type = 'castle' and price < 1500;
+        exit
+
+    
+--------------------- EOD 1/18/2019 ---------------------
+-------------------- START 1/19/2019 -------------------
+Lab 4: Recommendations ML with Dataproc
+    clone a repo
+    make a bucket
+        use project id
+    populate the bucket 
+        gsutil cp cloudsql/* gs://<BUCKET-NAME>/sql/
+    Create Cloud SQL instance
+        don't use project id
+        in the advanced options add the network ip from your console shell
+            bash ./find_my_ip.sh
+    Populate the tables
+    Make a dataproc big data service
+        cluster-1f79
+        cd ~/training-data-analyst/CPB100/lab3b
+        bash authorize_dataproc.sh cluster-1f79 us-central1 2
+    basically we just run a bunch of premade spark scripts from dataproc which inserted rows (recommendations) for a users
+
+-------------------- EOD 1/19/2019 -------------------
+-------------------- START 1/21/2019 -------------------
+Quiz
+    1. Relational databases are a good choice when you need:
+        Streaming, high-throughput writes
+        Fast queries on terabytes of data
+        Aggregations on unstructured data
+        -Transactional updates on relatively small datasets
+    2. Cloud SQL and Cloud Dataproc offer familiar tools (MySQL and Hadoop/Pig/Hive/Spark). What is the value-add provided by Google Cloud Platform?
+    (Select all of the correct options)
+        It’s the same API, but Google implements it better
+        Google-proprietary extensions and bug fixes to MySQL, Hadoop, and so on
+        -Fully-managed versions of the software offer no-ops
+        -Running it on Google infrastructure offers reliability and cost savings
+
+see https://cloud.google.com/solutions
+
+Cloud DataStore 
+    Allows you to read/write data/objects in a non-relational way.
+    Like a persistent hash-map
+    Not an easy migration for old apps
+    BUT 
+    CRUD operations are easily to implement
+    looks like object creation
+
+Bigtable
+    Give up transactional support
+        No longer Terabytes - but Petabytes instead
+     Cannot edit individual rows, just write new one.
+     No Ops
+     Put anything you need to query into the key because it's searchable, using # as sep
+    Tables should be tall and narrow. 
+        Don't have a column for each flag.
+        Store sparse style interactions
+     Work with the same way you normally work with HBASE
+        get connection,
+        get table,
+        put / add operations
