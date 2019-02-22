@@ -240,3 +240,43 @@ Bigtable
         get connection,
         get table,
         put / add operations
+
+BigQuery
+    Serverless, no cluster, massive scale, only API calls.
+-------------------- EOD 1/21/2019 -------------------
+-------------------- START 2/7/2019 -----------------
+Pandas and BigQuery work well together in GCP datalab notebooks
+    because bq aggregates statistics and pandas can do what pandas does
+
+------------------- 2/19/2019 ---------------------------
+Launch datalab notebook
+    datalab create bdmlvm --zone us-central1-a
+    Review https://cloud.google.com/storage-options/
+    
+------------------- 2/21/2019 ----------------------------
+
+Storage options:
+
+HINT: If it starts with a "cloud" then it's a virtual version if something you already do.
+
+    ie: clould storage = flat filesystem online gs://<asdf.csv>
+         could SQL       = SQL
+         
+ Otherwise there are 3 storage bucket type options:
+    1) Datastore
+    2) Bigtable
+    3) Bigquery
+    
+    1. Datastore is like mongo in that it works with large noSQL datatypes
+    
+    2. Bigtable is not a table. It's a big list of key values. You can only look things up by key. But it works at massive scale and is super fat
+    
+    3. Bigquery is a table (I know...). It works like SQL, optimized for ML on transactions
+    
+FUNDAMENTALS COURSE COMPLETE
+
+NEXT:
+
+Beginning: Leveraging Unstructured Data
+
+Dataproc is meant to replace hadoop. 
